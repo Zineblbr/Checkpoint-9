@@ -1,0 +1,52 @@
+INTEGER FUNCTION dot_product(v1[], v2[], length)
+BEGIN
+
+	var
+	i : INTEGER;
+	ps : INTEGER := 0;
+
+	FOR i FROM 1 TO length STEP 1 DO
+		ps := v1[i] * v2[i] + ps;
+	END_FOR
+
+	return(ps);
+
+END
+
+
+ALGORITHM orthogonal
+BEGIN
+
+	var
+	i, j, n, m : INTEGER;
+	V1[n][m], V2[n][m] : INTEGER;
+
+	Write ("Enter the number of pairs");
+	read(n);
+
+	Write ("Enter the length of vectors");
+	read(m);
+
+	FOR i FROM 1 TO n STEP 1 DO
+		Write ("Enter the V1 elements for the pair number " + i);
+		FOR j FROM 1 TO m STEP 1  DO
+			read(V1[i][j])
+		END_FOR
+
+		Write ("Enter the V2 elements for the pair number" + i);
+		FOR j FROM 1 TO m STEP 1  DO
+			read(V2[i][j])
+		END_FOR
+	END_FOR
+
+
+	FOR i FROM 1 TO n STEP 1 DO
+		ps := dot_product(V1[i], V2[i], m);
+		IF ( ps = 0 ) THEN
+			Write("The pair of vectors number "+ i + " are orthogonal");
+		ELSE
+			Write("The pair of vectors number "+ i + " are not orthogonal");
+		END_IF
+	END_FOR
+
+END
